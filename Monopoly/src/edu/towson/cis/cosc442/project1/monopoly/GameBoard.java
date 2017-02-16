@@ -9,14 +9,10 @@ import java.util.Hashtable;
  */
 public class GameBoard {
 
-	/** The game board card. */
-	private GameBoardCard gameBoardCard = new GameBoardCard();
-	
+	private GameBoardCardAssist gameBoardCardAssist = new GameBoardCardAssist();
+
 	/** The game board cell manager. */
 	private GameBoardCellManager gameBoardCellManager = new GameBoardCellManager();
-	
-	/** The community chest cards. */
-	private ArrayList<Card> communityChestCards = new ArrayList<Card>();
 	
 	/**
 	 * Instantiates a new game board.
@@ -32,7 +28,7 @@ public class GameBoard {
      * @param card the card
      */
     public void addCard(Card card) {
-        gameBoardCard.addCard(card, this.communityChestCards);
+        gameBoardCardAssist.getGameBoardCard().addCard(card, this.gameBoardCardAssist.getCommunityChestCards());
     }
 	
 	/**
@@ -59,10 +55,7 @@ public class GameBoard {
      * @return the card
      */
     public Card drawCCCard() {
-        Card card = (Card)communityChestCards.get(0);
-        communityChestCards.remove(0);
-        gameBoardCard.addCard(card, this.communityChestCards);
-        return card;
+        return gameBoardCardAssist.drawCCCard();
     }
 
     /**
@@ -71,7 +64,7 @@ public class GameBoard {
      * @return the card
      */
     public Card drawChanceCard() {
-        return gameBoardCard.drawChanceCard(this.communityChestCards);
+        return gameBoardCardAssist.getGameBoardCard().drawChanceCard(this.gameBoardCardAssist.getCommunityChestCards());
     }
 
 	/**
@@ -137,6 +130,6 @@ public class GameBoard {
      * Removes the cards.
      */
     public void removeCards() {
-        communityChestCards.clear();
+        gameBoardCardAssist.removeCards();
     }
 }

@@ -11,10 +11,8 @@ import java.util.Hashtable;
  */
 public class Player {
 	
-	/** The color groups. */
-	//the key of colorGroups is the name of the color group.
-	private Hashtable<String, Integer> colorGroups = new Hashtable<String, Integer>();
-	
+	private PlayerColor playerColor = new PlayerColor();
+
 	/** The in jail. */
 	private boolean inJail;
 	
@@ -58,21 +56,21 @@ public class Player {
         if(property instanceof PropertyCell) {
             PropertyCell cell = (PropertyCell)property;
             properties.add(cell);
-            colorGroups.put(
+            playerColor.getColorGroups().put(
                     cell.getColorGroup(), 
-                    new Integer(getPropertyNumberForColor(cell.getColorGroup())+1));
+                    new Integer(playerColor.getPropertyNumberForColor(cell.getColorGroup())+1));
         }
         if(property instanceof RailRoadCell) {
             railroads.add(property);
-            colorGroups.put(
+            playerColor.getColorGroups().put(
                     RailRoadCell.COLOR_GROUP, 
-                    new Integer(getPropertyNumberForColor(RailRoadCell.COLOR_GROUP)+1));
+                    new Integer(playerColor.getPropertyNumberForColor(RailRoadCell.COLOR_GROUP)+1));
         }
         if(property instanceof UtilityCell) {
             utilities.add(property);
-            colorGroups.put(
+            playerColor.getColorGroups().put(
                     UtilityCell.COLOR_GROUP, 
-                    new Integer(getPropertyNumberForColor(UtilityCell.COLOR_GROUP)+1));
+                    new Integer(playerColor.getPropertyNumberForColor(UtilityCell.COLOR_GROUP)+1));
         }
         setMoney(getMoney() - amount);
     }
@@ -83,7 +81,7 @@ public class Player {
 	 * @return true, if successful
 	 */
 	public boolean canBuyHouse() {
-		return (getMonopolies().length != 0);
+		return (playerColor.getMonopolies().length != 0);
 	}
 
 	/**
@@ -118,9 +116,9 @@ public class Player {
 			}
 			else {
 				player.properties.add(cell);
-				colorGroups.put(
+				playerColor.getColorGroups().put(
 						cell.getColorGroup(), 
-						new Integer(getPropertyNumberForColor(cell.getColorGroup())+1));
+						new Integer(playerColor.getPropertyNumberForColor(cell.getColorGroup())+1));
 			}
 		}
 		properties.clear();
@@ -154,19 +152,7 @@ public class Player {
 	 * @return the monopolies
 	 */
 	public String[] getMonopolies() {
-		ArrayList<String> monopolies = new ArrayList<String>();
-		Enumeration<String> colors = colorGroups.keys();
-		while(colors.hasMoreElements()) {
-			String color = (String)colors.nextElement();
-            if(!(color.equals(RailRoadCell.COLOR_GROUP)) && !(color.equals(UtilityCell.COLOR_GROUP))) {
-    			Integer num = (Integer)colorGroups.get(color);
-    			GameBoard gameBoard = GameMaster.instance().getGameBoard();
-    			if(num.intValue() == gameBoard.getPropertyNumberForColor(color)) {
-    				monopolies.add(color);
-    			}
-            }
-		}
-		return (String[])monopolies.toArray(new String[monopolies.size()]);
+		return playerColor.getMonopolies();
 	}
 
 	/**
@@ -222,20 +208,6 @@ public class Player {
 	}
 
 	/**
-	 * Gets the property number for color.
-	 *
-	 * @param name the name
-	 * @return the property number for color
-	 */
-	private int getPropertyNumberForColor(String name) {
-		Integer number = (Integer)colorGroups.get(name);
-		if(number != null) {
-			return number.intValue();
-		}
-		return 0;
-	}
-
-	/**
 	 * Checks if is bankrupt.
 	 *
 	 * @return true, if is bankrupt
@@ -259,7 +231,7 @@ public class Player {
 	 * @return the int
 	 */
 	public int numberOfRR() {
-		return getPropertyNumberForColor(RailRoadCell.COLOR_GROUP);
+		return playerColor.getPropertyNumberForColor(RailRoadCell.COLOR_GROUP);
 	}
 
 	/**
@@ -268,7 +240,7 @@ public class Player {
 	 * @return the int
 	 */
 	public int numberOfUtil() {
-		return getPropertyNumberForColor(UtilityCell.COLOR_GROUP);
+		return playerColor.getPropertyNumberForColor(UtilityCell.COLOR_GROUP);
 	}
 	
 	/**
