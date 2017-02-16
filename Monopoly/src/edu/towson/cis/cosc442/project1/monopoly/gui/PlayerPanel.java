@@ -21,31 +21,25 @@ import edu.towson.cis.cosc442.project1.monopoly.*;
  */
 public class PlayerPanel extends JPanel {
 
-    /** The player panel trading. */
+    private PlayerPanelDrawCard playerPanelDrawCard = new PlayerPanelDrawCard();
+
+	private PlayerPanelRollDice playerPanelRollDice = new PlayerPanelRollDice();
+
+	private PlayerPanelPurchaseProperties playerPanelPurchaseProperties = new PlayerPanelPurchaseProperties();
+
+	private PlayerPanelJail playerPanelJail = new PlayerPanelJail();
+
+	private PlayerPanelBuyHouse playerPanelBuyHouse = new PlayerPanelBuyHouse();
+
+	private PlayerPanelEndTurn playerPanelEndTurn = new PlayerPanelEndTurn();
+
+	/** The player panel trading. */
     private PlayerPanelTrading playerPanelTrading = new PlayerPanelTrading();
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
-	/** The btn buy house. */
-	private JButton btnBuyHouse;
-    
-    /** The btn draw card. */
-    private JButton btnDrawCard;
-    
-    /** The btn end turn. */
-    private JButton btnEndTurn;
-    
-    /** The btn get out of jail. */
-    private JButton btnGetOutOfJail;
-    
-    /** The btn purchase property. */
-    private JButton btnPurchaseProperty;
-    
-    /** The btn roll dice. */
-    private JButton btnRollDice;
-    
-    /** The lbl money. */
+	/** The lbl money. */
     private JLabel lblMoney;
     
     /** The lbl name. */
@@ -65,12 +59,12 @@ public class PlayerPanel extends JPanel {
     public PlayerPanel(Player player) {
         JPanel pnlAction = new JPanel();
         JPanel pnlInfo = new JPanel();
-        btnRollDice = new JButton("Roll Dice");
-        btnPurchaseProperty = new JButton("Purchase Property");
-        btnEndTurn = new JButton("End Turn");
-        btnBuyHouse = new JButton("Buy House");
-        btnGetOutOfJail = new JButton("Get Out of Jail");
-        btnDrawCard = new JButton("Draw Card");
+        playerPanelRollDice.setBtnRollDice(new JButton("Roll Dice"));
+        playerPanelPurchaseProperties.setBtnPurchaseProperty(new JButton("Purchase Property"));
+        playerPanelEndTurn.setBtnEndTurn(new JButton("End Turn"));
+        playerPanelBuyHouse.setBtnBuyHouse(new JButton("Buy House"));
+        playerPanelJail.setBtnGetOutOfJail(new JButton("Get Out of Jail"));
+        playerPanelDrawCard.setBtnDrawCard(new JButton("Draw Card"));
         playerPanelTrading.setBtnTrade(new JButton("Trade"));
         this.player = player;
         lblName = new JLabel();
@@ -93,12 +87,12 @@ public class PlayerPanel extends JPanel {
         pnlProperties.add(txtProperty);
 
         pnlAction.setLayout(new GridLayout(3, 3));
-        pnlAction.add(btnBuyHouse);
-        pnlAction.add(btnRollDice);
-        pnlAction.add(btnPurchaseProperty);
-        pnlAction.add(btnGetOutOfJail);
-        pnlAction.add(btnEndTurn);
-        pnlAction.add(btnDrawCard);
+        pnlAction.add(playerPanelBuyHouse.getBtnBuyHouse());
+        pnlAction.add(playerPanelRollDice.getBtnRollDice());
+        pnlAction.add(playerPanelPurchaseProperties.getBtnPurchaseProperty());
+        pnlAction.add(playerPanelJail.getBtnGetOutOfJail());
+        pnlAction.add(playerPanelEndTurn.getBtnEndTurn());
+        pnlAction.add(playerPanelDrawCard.getBtnDrawCard());
         pnlAction.add(playerPanelTrading.getBtnTrade());
 
         pnlAction.doLayout();
@@ -111,47 +105,47 @@ public class PlayerPanel extends JPanel {
         add(pnlInfo, BorderLayout.CENTER);
         add(pnlAction, BorderLayout.SOUTH);
 
-        btnRollDice.setEnabled(false);
-        btnPurchaseProperty.setEnabled(false);
-        btnEndTurn.setEnabled(false);
-        btnBuyHouse.setEnabled(false);
-        btnGetOutOfJail.setEnabled(false);
-        btnDrawCard.setEnabled(false);
+        playerPanelRollDice.getBtnRollDice().setEnabled(false);
+        playerPanelPurchaseProperties.getBtnPurchaseProperty().setEnabled(false);
+        playerPanelEndTurn.getBtnEndTurn().setEnabled(false);
+        playerPanelBuyHouse.getBtnBuyHouse().setEnabled(false);
+        playerPanelJail.getBtnGetOutOfJail().setEnabled(false);
+        playerPanelDrawCard.getBtnDrawCard().setEnabled(false);
         playerPanelTrading.getBtnTrade().setEnabled(false);
 
         setBorder(new BevelBorder(BevelBorder.RAISED));
 
-        btnRollDice.addActionListener(new ActionListener() {
+        playerPanelRollDice.getBtnRollDice().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 GameMaster.instance().btnRollDiceClicked();
             }
         });
 
-        btnEndTurn.addActionListener(new ActionListener() {
+        playerPanelEndTurn.getBtnEndTurn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 GameMaster.instance().btnEndTurnClicked();
             }
         });
 
-        btnPurchaseProperty.addActionListener(new ActionListener() {
+        playerPanelPurchaseProperties.getBtnPurchaseProperty().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 GameMaster.instance().btnPurchasePropertyClicked();
             }
         });
 
-        btnBuyHouse.addActionListener(new ActionListener() {
+        playerPanelBuyHouse.getBtnBuyHouse().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 GameMaster.instance().btnBuyHouseClicked();
             }
         });
 
-        btnGetOutOfJail.addActionListener(new ActionListener() {
+        playerPanelJail.getBtnGetOutOfJail().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 GameMaster.instance().btnGetOutOfJailClicked();
             }
         });
 
-        btnDrawCard.addActionListener(new ActionListener() {
+        playerPanelDrawCard.getBtnDrawCard().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Card card = GameMaster.instance().btnDrawCardClicked();
                 JOptionPane
@@ -187,7 +181,7 @@ public class PlayerPanel extends JPanel {
      * @return true, if is buy house button enabled
      */
     public boolean isBuyHouseButtonEnabled() {
-        return btnBuyHouse.isEnabled();
+        return playerPanelBuyHouse.isBuyHouseButtonEnabled();
     }
 
     /**
@@ -196,7 +190,7 @@ public class PlayerPanel extends JPanel {
      * @return true, if is draw card button enabled
      */
     public boolean isDrawCardButtonEnabled() {
-        return btnDrawCard.isEnabled();
+        return playerPanelDrawCard.isDrawCardButtonEnabled();
     }
 
     /**
@@ -205,7 +199,7 @@ public class PlayerPanel extends JPanel {
      * @return true, if is end turn button enabled
      */
     public boolean isEndTurnButtonEnabled() {
-        return btnEndTurn.isEnabled();
+        return playerPanelEndTurn.isEndTurnButtonEnabled();
     }
     
     /**
@@ -214,7 +208,7 @@ public class PlayerPanel extends JPanel {
      * @return true, if is gets the out of jail button enabled
      */
     public boolean isGetOutOfJailButtonEnabled() {
-        return btnGetOutOfJail.isEnabled();
+        return playerPanelJail.isGetOutOfJailButtonEnabled();
     }
     
     /**
@@ -223,7 +217,7 @@ public class PlayerPanel extends JPanel {
      * @return true, if is purchase property button enabled
      */
     public boolean isPurchasePropertyButtonEnabled() {
-        return btnPurchaseProperty.isEnabled();
+        return playerPanelPurchaseProperties.isPurchasePropertyButtonEnabled();
     }
     
     /**
@@ -232,7 +226,7 @@ public class PlayerPanel extends JPanel {
      * @return true, if is roll dice button enabled
      */
     public boolean isRollDiceButtonEnabled() {
-        return btnRollDice.isEnabled();
+        return playerPanelRollDice.isRollDiceButtonEnabled();
     }
 
     /**
@@ -250,7 +244,7 @@ public class PlayerPanel extends JPanel {
      * @param b the new buy house enabled
      */
     public void setBuyHouseEnabled(boolean b) {
-        btnBuyHouse.setEnabled(b);
+        playerPanelBuyHouse.setBuyHouseEnabled(b);
     }
 
     /**
@@ -259,7 +253,7 @@ public class PlayerPanel extends JPanel {
      * @param b the new draw card enabled
      */
     public void setDrawCardEnabled(boolean b) {
-        btnDrawCard.setEnabled(b);
+        playerPanelDrawCard.setDrawCardEnabled(b);
     }
 
     /**
@@ -268,7 +262,7 @@ public class PlayerPanel extends JPanel {
      * @param enabled the new end turn enabled
      */
     public void setEndTurnEnabled(boolean enabled) {
-        btnEndTurn.setEnabled(enabled);
+        playerPanelEndTurn.setEndTurnEnabled(enabled);
     }
 
     /**
@@ -277,7 +271,7 @@ public class PlayerPanel extends JPanel {
      * @param b the new gets the out of jail enabled
      */
     public void setGetOutOfJailEnabled(boolean b) {
-        btnGetOutOfJail.setEnabled(b);
+        playerPanelJail.setGetOutOfJailEnabled(b);
     }
 
     /**
@@ -286,7 +280,7 @@ public class PlayerPanel extends JPanel {
      * @param enabled the new purchase property enabled
      */
     public void setPurchasePropertyEnabled(boolean enabled) {
-        btnPurchaseProperty.setEnabled(enabled);
+        playerPanelPurchaseProperties.setPurchasePropertyEnabled(enabled);
     }
 
     /**
@@ -295,7 +289,7 @@ public class PlayerPanel extends JPanel {
      * @param enabled the new roll dice enabled
      */
     public void setRollDiceEnabled(boolean enabled) {
-        btnRollDice.setEnabled(enabled);
+        playerPanelRollDice.setRollDiceEnabled(enabled);
     }
 
     /**
