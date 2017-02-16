@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package edu.towson.cis.cosc442.project1.monopoly.gui;
 
 import java.awt.BorderLayout;
@@ -24,6 +27,7 @@ import edu.towson.cis.cosc442.project1.monopoly.*;
  */
 public class MainWindow extends JFrame implements MonopolyGUI{
 	
+	/** The main window panel manager. */
 	private MainWindowPanelManager mainWindowPanelManager = new MainWindowPanelManager();
 
 	/** The Constant serialVersionUID. */

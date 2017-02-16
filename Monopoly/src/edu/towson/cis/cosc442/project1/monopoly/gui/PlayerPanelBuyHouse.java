@@ -1,16 +1,37 @@
+/*
+ * 
+ */
 package edu.towson.cis.cosc442.project1.monopoly.gui;
 
 
 import javax.swing.JButton;
 import java.io.Serializable;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerPanelBuyHouse.
+ */
 public class PlayerPanelBuyHouse implements Serializable {
+	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+	/** The btn buy house. */
 	private JButton btnBuyHouse;
 
+	/**
+	 * Gets the btn buy house.
+	 *
+	 * @return the btn buy house
+	 */
 	public JButton getBtnBuyHouse() {
 		return btnBuyHouse;
 	}
 
+	/**
+	 * Sets the btn buy house.
+	 *
+	 * @param btnBuyHouse the new btn buy house
+	 */
 	public void setBtnBuyHouse(JButton btnBuyHouse) {
 		this.btnBuyHouse = btnBuyHouse;
 	}

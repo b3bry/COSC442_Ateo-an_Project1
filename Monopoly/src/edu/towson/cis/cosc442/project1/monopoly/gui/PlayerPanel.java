@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package edu.towson.cis.cosc442.project1.monopoly.gui;
 
 import java.awt.BorderLayout;
@@ -21,16 +24,22 @@ import edu.towson.cis.cosc442.project1.monopoly.*;
  */
 public class PlayerPanel extends JPanel {
 
+    /** The player panel draw card. */
     private PlayerPanelDrawCard playerPanelDrawCard = new PlayerPanelDrawCard();
 
+	/** The player panel roll dice. */
 	private PlayerPanelRollDice playerPanelRollDice = new PlayerPanelRollDice();
 
+	/** The player panel purchase properties. */
 	private PlayerPanelPurchaseProperties playerPanelPurchaseProperties = new PlayerPanelPurchaseProperties();
 
+	/** The player panel jail. */
 	private PlayerPanelJail playerPanelJail = new PlayerPanelJail();
 
+	/** The player panel buy house. */
 	private PlayerPanelBuyHouse playerPanelBuyHouse = new PlayerPanelBuyHouse();
 
+	/** The player panel end turn. */
 	private PlayerPanelEndTurn playerPanelEndTurn = new PlayerPanelEndTurn();
 
 	/** The player panel trading. */

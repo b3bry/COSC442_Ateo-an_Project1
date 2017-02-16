@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package edu.towson.cis.cosc442.project1.monopoly;
 
 
@@ -5,9 +8,20 @@ import java.util.Hashtable;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerColor.
+ */
 public class PlayerColor {
+	
+	/** The color groups. */
 	private Hashtable<String, Integer> colorGroups = new Hashtable<String, Integer>();
 
+	/**
+	 * Gets the color groups.
+	 *
+	 * @return the color groups
+	 */
 	public Hashtable<String, Integer> getColorGroups() {
 		return colorGroups;
 	}

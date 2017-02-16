@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package edu.towson.cis.cosc442.project1.monopoly.gui;
 
 
@@ -13,6 +16,9 @@ import java.io.Serializable;
  */
 public class GUITradeDialogOkButton implements Serializable {
 	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
 	/** The btn OK. */
 	private JButton btnOK;
 	

@@ -1,8 +1,9 @@
+/*
+ * 
+ */
 package edu.towson.cis.cosc442.project1.monopoly;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
 
 
 // TODO: Auto-generated Javadoc
@@ -11,6 +12,7 @@ import java.util.Hashtable;
  */
 public class Player {
 	
+	/** The player color. */
 	private PlayerColor playerColor = new PlayerColor();
 
 	/** The in jail. */
@@ -167,7 +169,6 @@ public class Player {
 	/**
 	 * Gets the out of jail.
 	 *
-	 * @return the out of jail
 	 */
 	public void getOutOfJail() {
 		money -= JailCell.BAIL;

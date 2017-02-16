@@ -1,7 +1,8 @@
+/*
+ * 
+ */
 package edu.towson.cis.cosc442.project1.monopoly;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -9,6 +10,7 @@ import java.util.Hashtable;
  */
 public class GameBoard {
 
+	/** The game board card assist. */
 	private GameBoardCardAssist gameBoardCardAssist = new GameBoardCardAssist();
 
 	/** The game board cell manager. */
